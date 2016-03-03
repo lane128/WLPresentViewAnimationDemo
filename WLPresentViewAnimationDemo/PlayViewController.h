@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayViewController : UIViewController <UIViewControllerTransitioningDelegate>
+@interface PlayViewController : UIViewController
 
 @end

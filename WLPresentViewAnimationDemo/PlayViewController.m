@@ -12,7 +12,11 @@
 #import "PlayViewController.h"
 #import "WLControllerTransition.h"
 
-@implementation PlayViewController
+@interface PlayViewController () <UIViewControllerTransitioningDelegate>
+
+@end
+
+@implementation PlayViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,11 +46,11 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source {
-    return [WLControllerTransition transitionWithType:kWLModalTransitionPresent duration:1.0f];
+    return [WLControllerTransition transitionWithType:kWLTransitionPresent duration:1.0f];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [WLControllerTransition transitionWithType:kWLBModalTransitionDismiss duration:1.0f];
+    return [WLControllerTransition transitionWithType:kWLTransitionDismiss duration:1.0f];
 }
 
 @end

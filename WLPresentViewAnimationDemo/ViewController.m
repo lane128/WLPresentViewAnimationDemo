@@ -10,8 +10,8 @@
 #define kHeight [UIScreen mainScreen].bounds.size.height
 
 #import "ViewController.h"
-#import "UIViewController+ShowModalFromView.h"
 #import "PlayViewController.h"
+#import "PushViewContrller.h"
 #import "WLControllerTransition.h"
 
 @interface ViewController ()
@@ -24,6 +24,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.presentView];
+    [self.view addSubview:self.pushButton];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(transtionAnimation)];
     [self.presentView addGestureRecognizer:tapGesture];
@@ -37,10 +38,29 @@
     return _presentView;
 }
 
+- (UIButton *)pushButton {
+    if (!_pushButton) {
+        _pushButton = [[UIButton alloc] initWithFrame:CGRectMake(kWidth / 2 - 50, 350, 100, 30)];
+        [_pushButton setTitle:@"Push" forState:UIControlStateNormal];
+        [_pushButton addTarget:self action:@selector(pushTransition) forControlEvents:UIControlEventTouchUpInside];
+        _pushButton.layer.borderColor = [UIColor blackColor].CGColor;
+        _pushButton.layer.borderWidth = 1.0f;
+        [_pushButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    return _pushButton;
+}
+
 - (void)transtionAnimation {
     NSLog(@"transtionAnimation");
     PlayViewController *playCV = [[PlayViewController alloc] init];
     [self presentViewController:playCV animated:YES completion:nil];
+}
+
+- (void)pushTransition {
+    NSLog(@"pushTransition");
+    PushViewContrller *pushVC = [[PushViewContrller alloc] init];
+    self.navigationController.delegate = pushVC;
+    [self.navigationController pushViewController:pushVC animated:YES];
 }
 
 @end

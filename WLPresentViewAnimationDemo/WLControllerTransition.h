@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, WLModalTransitionType) {
-    kWLModalTransitionPresent = 1 << 1,
-    kWLBModalTransitionDismiss = 1 << 2
+typedef NS_ENUM(NSUInteger, WLTransitionType) {
+    kWLTransitionPresent = 1 << 1,
+    kWLTransitionDismiss = 1 << 2,
+    kWLTransitionPush = 1 << 3,
+    kWLTransitionPop = 1 << 4
 };
 
 @interface WLControllerTransition : NSObject <UIViewControllerAnimatedTransitioning>
 
-+ (WLControllerTransition *)transitionWithType:(WLModalTransitionType)type duration:(NSTimeInterval)duration;
++ (WLControllerTransition *)transitionWithType:(WLTransitionType)type duration:(NSTimeInterval)duration;
 
 @end

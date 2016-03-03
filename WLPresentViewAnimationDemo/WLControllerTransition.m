@@ -6,20 +6,24 @@
 //  Copyright © 2016年 lane128. All rights reserved.
 //
 
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define kHeight [UIScreen mainScreen].bounds.size.height
+
 #import "WLControllerTransition.h"
 #import "ViewController.h"
 #import "PlayViewController.h"
+#import "PushViewContrller.h"
 
 @interface WLControllerTransition ()
 
-@property (nonatomic, assign) WLModalTransitionType type;
+@property (nonatomic, assign) WLTransitionType type;
 @property (nonatomic, assign) NSTimeInterval duratioin;
 
 @end
 
 @implementation WLControllerTransition
 
-+ (WLControllerTransition *)transitionWithType:(WLModalTransitionType)type duration:(NSTimeInterval)duration {
++ (WLControllerTransition *)transitionWithType:(WLTransitionType)type duration:(NSTimeInterval)duration {
     WLControllerTransition *transition = [[WLControllerTransition alloc] init];
     transition.type = type;
     transition.duratioin = duration;
@@ -29,13 +33,26 @@
 #pragma mark - UIViewControllerAnimatedTransitioning
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    if (self.type == kWLModalTransitionPresent) {
-        [self presentTransition:transitionContext];
+    switch (self.type) {
+        case kWLTransitionPresent:
+            [self presentTransition:transitionContext];
+            break;
+        
+        case kWLTransitionDismiss:
+            [self dismissTransition:transitionContext];
+            break;
+            
+        case kWLTransitionPush:
+            [self pushTransition:transitionContext];
+            break;
+            
+        case kWLTransitionPop:
+            [self popTransition:transitionContext];
+            break;
+            
+        default:
+            break;
     }
-    if (self.type == kWLBModalTransitionDismiss) {
-        [self dismissTransition:transitionContext];
-    }
-    
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -91,6 +108,31 @@
             [tempView removeFromSuperview];
         }
     }];
+}
+
+- (void)pushTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    ViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    PushViewContrller *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *containerView = [transitionContext containerView];
+    
+    [containerView addSubview:fromVC.view];
+    [containerView addSubview:toVC.view];
+    
+    toVC.view.frame = CGRectMake(kWidth, -kHeight, kWidth, kHeight);
+    toVC.view.alpha = 0.0;
+    
+    [UIView animateWithDuration:self.duratioin animations:^{
+        toVC.view.alpha = 1.0;
+        toVC.view.frame = CGRectMake(0, 0, kWidth, kHeight);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [transitionContext completeTransition:YES];
+        }
+    }];
+}
+
+- (void)popTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    
 }
 
 @end

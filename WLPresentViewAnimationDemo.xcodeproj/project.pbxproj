@@ -13,10 +13,10 @@
 		3D499B801C86BD5A00BB7A31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D499B7F1C86BD5A00BB7A31 /* Assets.xcassets */; };
 		3D499B831C86BD5A00BB7A31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D499B811C86BD5A00BB7A31 /* LaunchScreen.storyboard */; };
 		3D499B8E1C86BD5A00BB7A31 /* WLPresentViewAnimationDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D499B8D1C86BD5A00BB7A31 /* WLPresentViewAnimationDemoTests.m */; };
-		3D499BA11C86C54C00BB7A31 /* UIViewController+ShowModalFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D499BA01C86C54C00BB7A31 /* UIViewController+ShowModalFromView.m */; };
 		3D499BA41C86CE7500BB7A31 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D499BA31C86CE7500BB7A31 /* PlayViewController.m */; };
 		3D499BA71C8730E200BB7A31 /* WLControllerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D499BA61C8730E200BB7A31 /* WLControllerTransition.m */; };
 		3D499BA91C87311500BB7A31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D499BA81C87311500BB7A31 /* UIKit.framework */; };
+		3D499BAC1C88055800BB7A31 /* PushViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D499BAB1C88055800BB7A31 /* PushViewContrller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,13 +42,13 @@
 		3D499B891C86BD5A00BB7A31 /* WLPresentViewAnimationDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WLPresentViewAnimationDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D499B8D1C86BD5A00BB7A31 /* WLPresentViewAnimationDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLPresentViewAnimationDemoTests.m; sourceTree = "<group>"; };
 		3D499B8F1C86BD5A00BB7A31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D499B9F1C86C54C00BB7A31 /* UIViewController+ShowModalFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ShowModalFromView.h"; sourceTree = "<group>"; };
-		3D499BA01C86C54C00BB7A31 /* UIViewController+ShowModalFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ShowModalFromView.m"; sourceTree = "<group>"; };
 		3D499BA21C86CE7500BB7A31 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		3D499BA31C86CE7500BB7A31 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		3D499BA51C8730E200BB7A31 /* WLControllerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLControllerTransition.h; sourceTree = "<group>"; };
 		3D499BA61C8730E200BB7A31 /* WLControllerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLControllerTransition.m; sourceTree = "<group>"; };
 		3D499BA81C87311500BB7A31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3D499BAA1C88055800BB7A31 /* PushViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewContrller.h; sourceTree = "<group>"; };
+		3D499BAB1C88055800BB7A31 /* PushViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewContrller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +96,12 @@
 				3D499B771C86BD5A00BB7A31 /* AppDelegate.m */,
 				3D499B791C86BD5A00BB7A31 /* ViewController.h */,
 				3D499B7A1C86BD5A00BB7A31 /* ViewController.m */,
-				3D499B9F1C86C54C00BB7A31 /* UIViewController+ShowModalFromView.h */,
-				3D499BA01C86C54C00BB7A31 /* UIViewController+ShowModalFromView.m */,
 				3D499BA21C86CE7500BB7A31 /* PlayViewController.h */,
 				3D499BA31C86CE7500BB7A31 /* PlayViewController.m */,
 				3D499BA51C8730E200BB7A31 /* WLControllerTransition.h */,
 				3D499BA61C8730E200BB7A31 /* WLControllerTransition.m */,
+				3D499BAA1C88055800BB7A31 /* PushViewContrller.h */,
+				3D499BAB1C88055800BB7A31 /* PushViewContrller.m */,
 				3D499B7F1C86BD5A00BB7A31 /* Assets.xcassets */,
 				3D499B811C86BD5A00BB7A31 /* LaunchScreen.storyboard */,
 				3D499B841C86BD5A00BB7A31 /* Info.plist */,
@@ -235,10 +235,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D499B7B1C86BD5A00BB7A31 /* ViewController.m in Sources */,
-				3D499BA11C86C54C00BB7A31 /* UIViewController+ShowModalFromView.m in Sources */,
 				3D499B781C86BD5A00BB7A31 /* AppDelegate.m in Sources */,
 				3D499BA41C86CE7500BB7A31 /* PlayViewController.m in Sources */,
 				3D499B751C86BD5A00BB7A31 /* main.m in Sources */,
+				3D499BAC1C88055800BB7A31 /* PushViewContrller.m in Sources */,
 				3D499BA71C8730E200BB7A31 /* WLControllerTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
