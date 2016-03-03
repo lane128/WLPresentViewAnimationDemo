@@ -6,13 +6,12 @@
 //  Copyright © 2016年 lane128. All rights reserved.
 //
 
-#define kWidth [UIScreen mainScreen].bounds.size.width
-#define kHeight [UIScreen mainScreen].bounds.size.height
-
 #import "WLControllerTransition.h"
 #import "ViewController.h"
 #import "PlayViewController.h"
 #import "PushViewContrller.h"
+
+static NSTimeInterval const kDuration = 1.0f;
 
 @interface WLControllerTransition ()
 
@@ -26,7 +25,14 @@
 + (WLControllerTransition *)transitionWithType:(WLTransitionType)type duration:(NSTimeInterval)duration {
     WLControllerTransition *transition = [[WLControllerTransition alloc] init];
     transition.type = type;
-    transition.duratioin = duration;
+    transition.duratioin = duration > 0 ? duration : kDuration;
+    transition.delay = 0.0;
+    transition.usingSpringWithDamping = 1.0f;
+    transition.initialSpringVelocity = 0.0;
+    transition.options = UIViewAnimationOptionTransitionNone;
+    transition.animationEndStatus = nil;
+    transition.animationStartStatus = nil;
+    transition.animationCompletionStatus = nil;
     return transition;
 }
 
@@ -37,7 +43,7 @@
         case kWLTransitionPresent:
             [self presentTransition:transitionContext];
             break;
-        
+            
         case kWLTransitionDismiss:
             [self dismissTransition:transitionContext];
             break;
@@ -66,69 +72,72 @@
 #pragma mark - Private
 
 - (void)presentTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    ViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    PlayViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *containerView = [transitionContext containerView];
-    
-    UIView *tempView = [fromVC.view snapshotViewAfterScreenUpdates:NO];
-    fromVC.view.hidden = YES;
-    UIView *toView = toVC.view;
-    
-    [containerView addSubview:tempView];
-    [containerView addSubview:toView];
-    
-    toView.frame = CGRectMake(0, 0, 0, 0);
-    toView.alpha = 0.0;
-    
-    [UIView animateWithDuration:self.duratioin animations:^{
-        toView.frame = CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height);
-        toView.transform = CGAffineTransformMakeRotation(M_PI);
-        toView.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-        if (finished) {
-           [transitionContext completeTransition:YES];
-        }
-    }];
+    if (self.animationStartStatus) {
+        self.animationStartStatus(transitionContext);
+    }
+    [UIView animateWithDuration:self.duratioin
+                          delay:self.delay
+         usingSpringWithDamping:self.usingSpringWithDamping
+          initialSpringVelocity:self.initialSpringVelocity
+                        options:self.options
+                     animations:^{
+                         if (self.animationEndStatus) {
+                             self.animationEndStatus(transitionContext);
+                         }
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             if (self.animationCompletionStatus) {
+                                 self.animationCompletionStatus(transitionContext);
+                             }
+                             [transitionContext completeTransition:YES];
+                         }
+                     }];
 }
 
 - (void)dismissTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    PlayViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    ViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *containerView = [transitionContext containerView];
-    
-    UIView *tempView = containerView.subviews.lastObject;
-    
-    [UIView animateWithDuration:self.duratioin animations:^{
-        fromVC.view.frame = CGRectMake(0, 0, 0, 0);
-        fromVC.view.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [transitionContext completeTransition:YES];
-            toVC.view.hidden = NO;
-            [tempView removeFromSuperview];
-        }
-    }];
+    if (self.animationStartStatus) {
+        self.animationStartStatus(transitionContext);
+    }
+    [UIView animateWithDuration:self.duratioin
+                          delay:self.delay
+         usingSpringWithDamping:self.usingSpringWithDamping
+          initialSpringVelocity:self.initialSpringVelocity
+                        options:self.options
+                     animations:^{
+                         if (self.animationEndStatus) {
+                             self.animationEndStatus(transitionContext);
+                         }
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             if (self.animationCompletionStatus) {
+                                 self.animationCompletionStatus(transitionContext);
+                             }
+                             [transitionContext completeTransition:YES];
+                         }
+                     }];
 }
 
 - (void)pushTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    ViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    PushViewContrller *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *containerView = [transitionContext containerView];
-    
-    [containerView addSubview:fromVC.view];
-    [containerView addSubview:toVC.view];
-    
-    toVC.view.frame = CGRectMake(kWidth, -kHeight, kWidth, kHeight);
-    toVC.view.alpha = 0.0;
-    
-    [UIView animateWithDuration:self.duratioin animations:^{
-        toVC.view.alpha = 1.0;
-        toVC.view.frame = CGRectMake(0, 0, kWidth, kHeight);
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [transitionContext completeTransition:YES];
-        }
-    }];
+    if (self.animationStartStatus) {
+        self.animationStartStatus(transitionContext);
+    }
+    [UIView animateWithDuration:self.duratioin
+                          delay:self.delay
+         usingSpringWithDamping:self.usingSpringWithDamping
+          initialSpringVelocity:self.initialSpringVelocity
+                        options:self.options
+                     animations:^{
+                         if (self.animationEndStatus) {
+                             self.animationEndStatus(transitionContext);
+                         }
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             if (self.animationCompletionStatus) {
+                                 self.animationCompletionStatus(transitionContext);
+                             }
+                             [transitionContext completeTransition:YES];
+                         }
+                     }];
 }
 
 - (void)popTransition:(id<UIViewControllerContextTransitioning>)transitionContext {

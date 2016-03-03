@@ -6,9 +6,6 @@
 //  Copyright © 2016年 lane128. All rights reserved.
 //
 
-#define kWidth [UIScreen mainScreen].bounds.size.width
-#define kHeight [UIScreen mainScreen].bounds.size.height
-
 #import "ViewController.h"
 #import "PlayViewController.h"
 #import "PushViewContrller.h"
@@ -26,7 +23,7 @@
     [self.view addSubview:self.presentView];
     [self.view addSubview:self.pushButton];
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(transtionAnimation)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(presentTranstion)];
     [self.presentView addGestureRecognizer:tapGesture];
 }
 
@@ -50,7 +47,7 @@
     return _pushButton;
 }
 
-- (void)transtionAnimation {
+- (void)presentTranstion {
     NSLog(@"transtionAnimation");
     PlayViewController *playCV = [[PlayViewController alloc] init];
     [self presentViewController:playCV animated:YES completion:nil];

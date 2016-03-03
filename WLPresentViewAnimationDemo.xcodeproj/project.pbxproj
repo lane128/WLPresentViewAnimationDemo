@@ -49,6 +49,8 @@
 		3D499BA81C87311500BB7A31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D499BAA1C88055800BB7A31 /* PushViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewContrller.h; sourceTree = "<group>"; };
 		3D499BAB1C88055800BB7A31 /* PushViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewContrller.m; sourceTree = "<group>"; };
+		3DD109A31C88589D000104F4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		3DD109A41C8858E8000104F4 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		3D499B721C86BD5A00BB7A31 /* WLPresentViewAnimationDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3DD109A41C8858E8000104F4 /* Define.h */,
 				3D499B761C86BD5A00BB7A31 /* AppDelegate.h */,
 				3D499B771C86BD5A00BB7A31 /* AppDelegate.m */,
 				3D499B791C86BD5A00BB7A31 /* ViewController.h */,
@@ -114,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				3D499B741C86BD5A00BB7A31 /* main.m */,
+				3DD109A31C88589D000104F4 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -357,6 +361,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = /Users/lane/WLPresentViewAnimationDemo_st/WLPresentViewAnimationDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = WLPresentViewAnimationDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lane128.WLPresentViewAnimationDemo;
@@ -368,6 +374,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = /Users/lane/WLPresentViewAnimationDemo_st/WLPresentViewAnimationDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = WLPresentViewAnimationDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lane128.WLPresentViewAnimationDemo;
@@ -418,6 +426,7 @@
 				3D499B941C86BD5A00BB7A31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D499B951C86BD5A00BB7A31 /* Build configuration list for PBXNativeTarget "WLPresentViewAnimationDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +435,7 @@
 				3D499B971C86BD5A00BB7A31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

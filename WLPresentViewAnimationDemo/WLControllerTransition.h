@@ -18,6 +18,14 @@ typedef NS_ENUM(NSUInteger, WLTransitionType) {
 
 @interface WLControllerTransition : NSObject <UIViewControllerAnimatedTransitioning>
 
+@property (nonatomic, assign) NSTimeInterval delay;
+@property (nonatomic, assign) CGFloat usingSpringWithDamping;
+@property (nonatomic, assign) CGFloat initialSpringVelocity;
+@property (nonatomic, assign) UIViewAnimationOptions options;
+@property (nonatomic, copy) void (^animationStartStatus)(id<UIViewControllerContextTransitioning> transitionContext);
+@property (nonatomic, copy) void (^animationEndStatus)(id<UIViewControllerContextTransitioning> transitionContext);
+@property (nonatomic, copy) void (^animationCompletionStatus)(id<UIViewControllerContextTransitioning> transitionContext);
+
 + (WLControllerTransition *)transitionWithType:(WLTransitionType)type duration:(NSTimeInterval)duration;
 
 @end

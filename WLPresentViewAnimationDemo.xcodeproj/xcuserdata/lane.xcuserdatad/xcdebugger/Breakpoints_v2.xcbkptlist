@@ -30,16 +30,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WLPresentViewAnimationDemo/PlayViewController.m"
-            timestampString = "478678701.966178"
+            filePath = "WLPresentViewAnimationDemo/WLControllerTransition.m"
+            timestampString = "478690073.6686"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-animationControllerForDismissedController:"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-animateTransition:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -49,13 +49,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WLPresentViewAnimationDemo/PlayViewController.m"
-            timestampString = "478678701.966178"
+            filePath = "WLPresentViewAnimationDemo/WLControllerTransition.m"
+            timestampString = "478690076.822868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-closeView"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-transitionDuration:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

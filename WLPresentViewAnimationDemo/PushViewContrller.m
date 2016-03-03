@@ -6,9 +6,6 @@
 //  Copyright © 2016年 lane128. All rights reserved.
 //
 
-#define kWidth [UIScreen mainScreen].bounds.size.width
-#define kHeight [UIScreen mainScreen].bounds.size.height
-
 #import "PushViewContrller.h"
 #import "WLControllerTransition.h"
 
@@ -60,7 +57,23 @@
                                                fromViewController:(UIViewController *)fromVC
                                                  toViewController:(UIViewController *)toVC {
     if (operation == UINavigationControllerOperationPush) {
-        return [WLControllerTransition transitionWithType:kWLTransitionPush duration:1.5f];
+        WLControllerTransition *transition = [WLControllerTransition transitionWithType:kWLTransitionPush duration:1.5f];
+        transition.animationStartStatus = ^(id<UIViewControllerContextTransitioning> transitionContext) {
+            UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+            UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+            UIView *containerView = [transitionContext containerView];
+            [containerView addSubview:fromVC.view];
+            [containerView addSubview:toVC.view];
+            toVC.view.frame = CGRectMake(kWidth, -kHeight, kWidth, kHeight);
+            toVC.view.alpha = 0.0;
+        };
+        
+        transition.animationEndStatus = ^(id<UIViewControllerContextTransitioning> transitionContext) {
+            UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+            toVC.view.alpha = 1.0;
+            toVC.view.frame = CGRectMake(0, 0, kWidth, kHeight);
+        };
+        return transition;
     } else if (operation == UINavigationControllerOperationPop) {
         return nil;//[WLControllerTransition transitionWithType:kWLTransitionPop duration:1.5f];
     } else {
