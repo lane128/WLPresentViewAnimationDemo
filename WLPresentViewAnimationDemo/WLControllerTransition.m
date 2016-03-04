@@ -39,26 +39,26 @@ static NSTimeInterval const kDuration = 1.0f;
 #pragma mark - UIViewControllerAnimatedTransitioning
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    switch (self.type) {
-        case kWLTransitionPresent:
-            [self presentTransition:transitionContext];
-            break;
-            
-        case kWLTransitionDismiss:
-            [self dismissTransition:transitionContext];
-            break;
-            
-        case kWLTransitionPush:
-            [self pushTransition:transitionContext];
-            break;
-            
-        case kWLTransitionPop:
-            [self popTransition:transitionContext];
-            break;
-            
-        default:
-            break;
+    if (self.animationStartStatus) {
+        self.animationStartStatus(transitionContext);
     }
+    [UIView animateWithDuration:self.duratioin
+                          delay:self.delay
+         usingSpringWithDamping:self.usingSpringWithDamping
+          initialSpringVelocity:self.initialSpringVelocity
+                        options:self.options
+                     animations:^{
+                         if (self.animationEndStatus) {
+                             self.animationEndStatus(transitionContext);
+                         }
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             if (self.animationCompletionStatus) {
+                                 self.animationCompletionStatus(transitionContext);
+                             }
+                             [transitionContext completeTransition:YES];
+                         }
+                     }];
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -67,81 +67,6 @@ static NSTimeInterval const kDuration = 1.0f;
 
 - (void)animationEnded:(BOOL)transitionCompleted {
     NSLog(@"%s", __FUNCTION__);
-}
-
-#pragma mark - Private
-
-- (void)presentTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    if (self.animationStartStatus) {
-        self.animationStartStatus(transitionContext);
-    }
-    [UIView animateWithDuration:self.duratioin
-                          delay:self.delay
-         usingSpringWithDamping:self.usingSpringWithDamping
-          initialSpringVelocity:self.initialSpringVelocity
-                        options:self.options
-                     animations:^{
-                         if (self.animationEndStatus) {
-                             self.animationEndStatus(transitionContext);
-                         }
-                     } completion:^(BOOL finished) {
-                         if (finished) {
-                             if (self.animationCompletionStatus) {
-                                 self.animationCompletionStatus(transitionContext);
-                             }
-                             [transitionContext completeTransition:YES];
-                         }
-                     }];
-}
-
-- (void)dismissTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    if (self.animationStartStatus) {
-        self.animationStartStatus(transitionContext);
-    }
-    [UIView animateWithDuration:self.duratioin
-                          delay:self.delay
-         usingSpringWithDamping:self.usingSpringWithDamping
-          initialSpringVelocity:self.initialSpringVelocity
-                        options:self.options
-                     animations:^{
-                         if (self.animationEndStatus) {
-                             self.animationEndStatus(transitionContext);
-                         }
-                     } completion:^(BOOL finished) {
-                         if (finished) {
-                             if (self.animationCompletionStatus) {
-                                 self.animationCompletionStatus(transitionContext);
-                             }
-                             [transitionContext completeTransition:YES];
-                         }
-                     }];
-}
-
-- (void)pushTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    if (self.animationStartStatus) {
-        self.animationStartStatus(transitionContext);
-    }
-    [UIView animateWithDuration:self.duratioin
-                          delay:self.delay
-         usingSpringWithDamping:self.usingSpringWithDamping
-          initialSpringVelocity:self.initialSpringVelocity
-                        options:self.options
-                     animations:^{
-                         if (self.animationEndStatus) {
-                             self.animationEndStatus(transitionContext);
-                         }
-                     } completion:^(BOOL finished) {
-                         if (finished) {
-                             if (self.animationCompletionStatus) {
-                                 self.animationCompletionStatus(transitionContext);
-                             }
-                             [transitionContext completeTransition:YES];
-                         }
-                     }];
-}
-
-- (void)popTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    
 }
 
 @end

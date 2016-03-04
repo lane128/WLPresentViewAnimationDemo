@@ -58,7 +58,7 @@
                                                  toViewController:(UIViewController *)toVC {
     if (operation == UINavigationControllerOperationPush) {
         WLControllerTransition *transition = [WLControllerTransition transitionWithType:kWLTransitionPush duration:1.5f];
-        transition.animationStartStatus = ^(id<UIViewControllerContextTransitioning> transitionContext) {
+        [transition setAnimationStartStatus:^(id<UIViewControllerContextTransitioning> transitionContext) {
             UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
             UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
             UIView *containerView = [transitionContext containerView];
@@ -66,16 +66,16 @@
             [containerView addSubview:toVC.view];
             toVC.view.frame = CGRectMake(kWidth, -kHeight, kWidth, kHeight);
             toVC.view.alpha = 0.0;
-        };
+        }];
         
-        transition.animationEndStatus = ^(id<UIViewControllerContextTransitioning> transitionContext) {
+        [transition setAnimationEndStatus:^(id<UIViewControllerContextTransitioning> transitionContext) {
             UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
             toVC.view.alpha = 1.0;
             toVC.view.frame = CGRectMake(0, 0, kWidth, kHeight);
-        };
+        }];
         return transition;
     } else if (operation == UINavigationControllerOperationPop) {
-        return nil;//[WLControllerTransition transitionWithType:kWLTransitionPop duration:1.5f];
+        return nil;//默认pop动画
     } else {
         return nil;
     }
